@@ -1,12 +1,7 @@
-# arr = [1, 4, 1, 2, 4, 2, 4, 2, 3, 4, 4]
+n, x = map(int, input().split())
 
-# a = arr.count(2)
-# print(a)
+m = list(map(int, input().split()))
 
-n, m = map(int, (input().split()))
-
-x = list(map(int, input().split()))
-
-for i in (x):
-    if i < m:
-        print(i, end=" ")
+for i in range(len(m)):
+    if m[i] < x:
+        print(m[i], end=" ")
