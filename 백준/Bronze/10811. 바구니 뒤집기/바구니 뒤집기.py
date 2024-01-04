@@ -1,14 +1,18 @@
 N, M = map(int, input().split())
 
-x = [i for i in range(1, N + 1)]
+arr = []
 
-for _ in range(M):
+for i in range(N):
+    arr.append(i+1)
+
+
+temp = 0
+for i in range(M):
     i, j = map(int, input().split())
-    x[i-1:j] = x[i-1:j][::-1]
+    temp = arr[i-1:j]
+    temp.reverse()
+    arr[i-1:j] = temp
+    # print(arr)
 
-for i in x:
-    print(i, end=' ')
-# 1 2 3 4 5
-# 2 1 3 4 5
-# 2 1 4 3 5
-# 3 4 1 2 5
+for i in range(N):
+    print(arr[i], end=" ")
