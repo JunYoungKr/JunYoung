@@ -1,4 +1,14 @@
-N, B = (input().split())
+N, B = input().split()
 
-# int 함수를 사용하여 36진법 -> 10진법
-print(int(N, int(B)))
+abc = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+N = N[::-1]
+
+res = 0
+
+for i, n in enumerate(N):
+    # print(i, n)
+    # print(abc.index(n))
+    res += abc.index(n) * int(B) ** i
+
+print(res)
