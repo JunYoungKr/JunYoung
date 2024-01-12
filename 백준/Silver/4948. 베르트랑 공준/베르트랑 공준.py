@@ -1,7 +1,5 @@
 import sys
 
-count = 0
-
 
 def isPrime(x):
     if x == 1 or x == 0:
@@ -13,20 +11,20 @@ def isPrime(x):
     return True
 
 
-all_list = list(range(2, 246912))
-memo = []
-
-for i in all_list:
+arr = []
+for i in range(2, 246912):
     if isPrime(i):
-        memo.append(i)
+        arr.append(i)
+
+# print(arr) 확인되었음
 
 while True:
     count = 0
-    N = int(sys.stdin.readline())
-    if N == 0:
+    n = int(sys.stdin.readline())
+    if n == 0:
         break
-    next_N = 2 * N
-    for i in memo:
-        if N < i <= 2*N:
+    for i in arr:
+        if n < i <= 2 * n:
             count += 1
+
     print(count)
