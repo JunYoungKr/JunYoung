@@ -1,5 +1,5 @@
 import sys
-sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(10000)
 input = sys.stdin.readline
 
 # 정점의 개수 N, 간선의 개수 M
@@ -17,12 +17,15 @@ for _ in range(M):
 visited = [False] * (N + 1)
 
 # dfs 기본 코드
+
+
 def dfs(graph, v, visited):
     visited[v] = True
 
     for i in graph[v]:
         if not visited[i]:
             dfs(graph, i, visited)
+
 
 # 연결된 노드의 수
 count = 0
