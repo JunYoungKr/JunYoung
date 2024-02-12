@@ -1,8 +1,12 @@
+import sys
 from collections import deque
+input = sys.stdin.readline
+sys.setrecursionlimit(10**6)
 
+# 정점의 개수 N, 간선의 개수 M, 탐색을 시작할 정점의 번호 V
 N, M, V = map(int, input().split())
 
-graph = [[] for _ in range(N + 1)]
+graph = [[] for _ in range(N+1)]
 
 for i in range(M):
     a, b = map(int, input().split())
@@ -10,20 +14,15 @@ for i in range(M):
     graph[b].append(a)
 
 # print(graph)
-
-
 for i in graph:
     i.sort()
+visited = [False] * (N+1)
 
 
-visited = [False] * (N + 1)
-
-
-def dfs(start):
-    visited[start] = True
-    print(start, end=' ')
-
-    for i in graph[start]:
+def dfs(V):
+    visited[V] = True
+    print(V, end=' ')
+    for i in graph[V]:
         if not visited[i]:
             dfs(i)
 
@@ -31,22 +30,18 @@ def dfs(start):
 dfs(V)
 
 print()
-
-# 주의!! visited 2개를 생성해야함!
-visited = [False] * (N + 1)
+visited2 = [False] * (N+1)
 
 
-def bfs(start):
-    queue = deque([start])
-    visited[start] = True
-
-    # 큐가 빌 때까지
+def bfs(V):
+    queue = deque([V])
+    visited2[V] = True
     while queue:
         v = queue.popleft()
         print(v, end=' ')
         for i in graph[v]:
-            if not visited[i]:
-                visited[i] = True
+            if not visited2[i]:
+                visited2[i] = True
                 queue.append(i)
 
 
