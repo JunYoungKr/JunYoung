@@ -1,8 +1,10 @@
--- 식품분류별로 가격이 제일 비싼 식품의 분류, 가격, 이름을 조회
--- 식품분류가 '과자', '국', '김치', '식용유'인 경우만 출력
--- 식품 가격을 기준으로 내림차순
-
-select CATEGORY, PRICE AS MAX_PRICE, PRODUCT_NAME from food_product
-where category in ('과자', '국', '김치', '식용유')
-and price in(select max(price) from food_product group by category)
-order by price DESC
+-- 코드를 입력하세요
+SELECT CATEGORY, PRICE AS MAX_PRICE, PRODUCT_NAME
+FROM FOOD_PRODUCT
+WHERE CATEGORY in ('과자', '국', '김치', '식용유')
+AND PRICE IN (SELECT max(price) FROM FOOD_PRODUCT GROUP BY CATEGORY)
+ORDER BY PRICE DESC
+# 식용유 8950 맛있는 마조유 
+# 김치 19000 맛있는배추김치
+# 국 2900 맛있는김치찌개
+# 과자 1900 맛있는허니버터칩
