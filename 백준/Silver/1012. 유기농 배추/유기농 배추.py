@@ -1,35 +1,35 @@
 import sys
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(10**6)
+input = sys.stdin.readline
 
-# 테스트 케이스 T 입력
 T = int(input())
 
 
 def dfs(x, y):
-    if x < 0 or y < 0 or x >= N or y >= M:
+    if x < 0 or x >= N or y < 0 or y >= M:
         return False
     if graph[x][y] == 1:
         graph[x][y] = 0
-        # 상하좌우
-        dfs(x, y-1)
-        dfs(x, y+1)
         dfs(x-1, y)
         dfs(x+1, y)
+        dfs(x, y-1)
+        dfs(x, y+1)
         return True
     return False
 
 
-for i in range(T):
-    # 배추밭의 가로길이 M, 세로길이 N, 배추가 심어져 있는 위치의 개수 K
+for _ in range(T):
+
+    # 가로길이 M, 세로길이 N, 심어져있는 위치의 개수 K
     M, N, K = map(int, input().split())
 
-    # 배추밭
     graph = [[0] * M for _ in range(N)]
+    # print(graph)
 
-    # K줄에 배추의 위치
-    for i in range(K):
-        a, b = map(int, input().split())
-        graph[b][a] = 1
+    for _ in range(K):
+        x, y = map(int, input().split())
+        graph[y][x] = 1
+    # print(graph)
 
     res = 0
     for i in range(N):
