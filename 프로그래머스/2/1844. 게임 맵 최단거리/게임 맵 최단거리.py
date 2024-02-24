@@ -1,29 +1,33 @@
 from collections import deque
 
+def bfs(maps):
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1 ,1]
+    N = len(maps)
+    M = len(maps[0])
+    queue = deque([])
+    queue.append((0, 0))
+    while queue:
+        x, y = queue.popleft()
+        
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            
+            if nx < 0 or ny < 0 or nx >= N or ny >= M:
+                continue
+            if maps[nx][ny] == 0:
+                continue
+            
+            if maps[nx][ny] == 1:
+                queue.append((nx, ny))
+                maps[nx][ny] = maps[x][y] + 1
+                
+    return maps[N-1][M-1]
+
 def solution(maps):
-    answer = 0
+    answer = bfs(maps)
     
-    dx = [-1,1,0,0]
-    dy = [0,0,-1,1]
-    
-    def bfs(x, y):
-        queue = deque()
-        queue.append((x, y))
-
-        while queue:
-            x, y = queue.popleft()
-            for i in range(4):
-                nx = x + dx[i]
-                ny = y + dy[i]
-                if nx < 0 or ny < 0 or nx >= len(maps) or ny >= len(maps[0]):
-                    continue
-                if maps[nx][ny] == 0:
-                    continue
-                if maps[nx][ny] == 1:
-                    maps[nx][ny] = maps[x][y] + 1
-                    queue.append((nx, ny))
-
-        return maps[len(maps)-1][len(maps[0])-1]
-
-    answer = bfs(0, 0)
-    return -1 if answer == 1 else answer    # 상대 팀 진영에 도착할 수 없을 때 -1
+    if answer == 1:
+        return -1 
+    return answer
